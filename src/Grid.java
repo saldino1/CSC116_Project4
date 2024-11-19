@@ -15,6 +15,7 @@ public class Grid {
         }
         this.rows = rows;
         this.cols = cols;
+        grid = new Letter[rows][cols];
         for(int i = 0; i < rows; i++) {
             for(int j = 0; j < cols; j++) {
                 grid[i][j] = new Letter();
@@ -35,31 +36,31 @@ public class Grid {
     }
 
     public char getLetter(int row, int col) {
-        if(rows < 0 || row >= this.rows) {
-            throw new IllegalArgumentException("Invalid rows");
+        if(row < 0 || row >= this.rows) {
+            throw new IllegalArgumentException("Invalid row");
         }
-        if(cols < 0 || col >= this.cols) {
-            throw new IllegalArgumentException("Invalid cols");
+        if(col < 0 || col >= this.cols) {
+            throw new IllegalArgumentException("Invalid col");
         }
         return grid[row][col].getLetter();
     }
 
     public Letter.Status getStatus(int row, int col) {
-        if(rows < 0 || row >= this.rows) {
-            throw new IllegalArgumentException("Invalid rows");
+        if(row < 0 || row >= this.rows) {
+            throw new IllegalArgumentException("Invalid row");
         }
-        if(cols < 0 || col >= this.cols) {
-            throw new IllegalArgumentException("Invalid cols");
+        if(col < 0 || col >= this.cols) {
+            throw new IllegalArgumentException("Invalid col");
         }
         return grid[row][col].getStatus();
     }
 
     public void updateLetter(int row, int col, char letter, Letter.Status status) {
-        if(rows < 0 || row >= this.rows) {
-            throw new IllegalArgumentException("Invalid rows");
+        if(row < 0 || row >= this.rows) {
+            throw new IllegalArgumentException("Invalid row");
         }
-        if(cols < 0 || col >= this.cols) {
-            throw new IllegalArgumentException("Invalid cols");
+        if(col < 0 || col >= this.cols) {
+            throw new IllegalArgumentException("Invalid col");
         }
         grid[row][col].setLetter(letter);
         grid[row][col].setStatus(status);
@@ -79,7 +80,7 @@ public class Grid {
         }
         for(int i = 0; i < rows; i++) {
             for(int j = 0; j < cols; j++) {
-                if(!this.grid[rows][cols].equals(g1.grid[rows][cols])) {
+                if(!this.grid[i][j].equals(g1.grid[i][j])) {
                     return false;
                 }
             }
@@ -93,7 +94,7 @@ public class Grid {
         for(int i = 0; i < rows; i++) {
             total = total.concat("|");
             for(int j = 0; j < cols; j++) {
-                total = total.concat(this.grid[rows][cols].toString() + "|");
+                total = total.concat(this.grid[i][j].toString() + "|");
             }
             total = total.concat("\n");
         }

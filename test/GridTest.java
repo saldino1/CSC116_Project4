@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
  * 
  * @author Suzanne Balik
  * @author Michelle Glatz
- * @author 
+ * @author Amelia Saldino
  */
 public class GridTest {
 
@@ -83,7 +83,8 @@ public class GridTest {
         // 1. call grid.updateLetter() to change the status of a letter in the grid to
         //    something other than Letter.Status.NOT_GUESSED
         // 2. Write an assertEquals to test the getStatus method for letter that was changed
-        fail("No test added");        
+        grid.updateLetter(0,0, 'A', Letter.Status.IN_POSITION);
+        assertEquals(grid.getStatus(0, 0), Letter.Status.IN_POSITION);
     }      
     
     
@@ -109,7 +110,8 @@ public class GridTest {
         // 1. call grid.updateLetter() to change a letter in the grid to 
         //    something other than underscore
         // 2. Write an assertEquals to test the getLetter method for letter that was changed
-        fail("No test added");        
+        grid.updateLetter(0, 0,'A', Letter.Status.NOT_IN_WORD);
+        assertEquals(grid.getLetter(0, 0), 'A');      
     } 
     
     
@@ -195,7 +197,8 @@ public class GridTest {
         // rows
         // 1. Create a new Grid (with different number of rows but same number of cols as grid)
         // 2. Write an assertFalse to test the equals method for grid and the new grid
-        fail("No test added");        
+        Grid newGrid = new Grid(5, 3);
+        assertFalse(grid.equals(newGrid));
     } 
 
     /**
@@ -207,7 +210,8 @@ public class GridTest {
         // cols
         // 1. Create a new Grid (with same number of rows but different number of cols than grid)
         // 2. Write an assertFalse to test the equals method for grid and the new grid
-        fail("No test added");        
+        Grid newGrid = new Grid(2, 10);
+        assertFalse(grid.equals(newGrid));        
     }      
 
     /**
