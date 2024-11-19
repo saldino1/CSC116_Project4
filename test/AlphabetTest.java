@@ -3,8 +3,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-//TODO: Add documentation to pass checkstyle
-
 /**
  * Tests Alphabet class
  * 
@@ -95,9 +93,6 @@ public class AlphabetTest {
      */
     @Test
     public void testUpdateStatusInPosition() {
-        // TODO: Write another test of update and getStatus
-        // 1. Call updateStatus to change the status of letter[0] to IN_POSITION
-        // 1. Write an assertEquals test for getStatus for letter[0]
         alphabet.updateStatus(0, Letter.Status.IN_POSITION);
         assertEquals(Letter.Status.IN_POSITION, alphabet.getStatus(0), 
                        "Test updateStatus(0, Letter.Status.IN_POSITION)");        
@@ -147,10 +142,6 @@ public class AlphabetTest {
      */
     @Test
     public void testUpdateStatusUnchangedInWordToNotInWord() {
-        // TODO: Write another test of update and getStatus
-        // 1. Call updateStatus to change the status of letter[0] to IN_WORD
-        // 2. Call updateStatus to change the status of letter[0] to NOT_IN_WORD        
-        // 1. Write an assertEquals test for getStatus for letter[0]
         alphabet.updateStatus(0, Letter.Status.IN_WORD);
         alphabet.updateStatus(0, Letter.Status.NOT_IN_WORD);
         assertEquals(Letter.Status.IN_WORD, alphabet.getStatus(0), 
@@ -320,11 +311,6 @@ public class AlphabetTest {
      */    
     @Test
     public void testEqualsDifferentStatus() {
-        // TODO: Write test for equals that would return false - alpabets with different 
-        // statuses
-        // 1. Create a new Alphabet (not alphabet)
-        // 2. Call updateStatus to update the status of index 0 of the new alphabet to IN_WORD
-        // 3. Write an assertFalse to test the equals method for alphabet and the new alphabet
         Alphabet alphabet2 = new Alphabet();
         alphabet2.updateStatus(0, Letter.Status.IN_WORD);
         assertFalse(alphabet.equals(alphabet2));    

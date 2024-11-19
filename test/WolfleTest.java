@@ -6,9 +6,6 @@ import java.lang.System.Logger.Level;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-//TODO: Add documentation to pass checkstyle
-
-
 /**
  * Tests Wolfle class
  * 
@@ -64,12 +61,6 @@ public class WolfleTest {
     
     @Test
     public void testIsGameOverCorrectGuessOnLastGuess() {
-        // TODO: Write another test for isGameOverCorrectGuess true on sixth guess
-        // 1. Call wolfle.processGuess() with an incorrect guess five times
-        // 2. Call wolfle.processGuess() with a correct guess
-        // 3. Add an assertFalse test for isGameOverCorrectGuess after each incorrect guess
-        // 4. Add an assertTrue test for isGameOverCorrectGuess after correct guess
-       
         wolfle.processGuess("USQUE", 0);
         assertFalse(wolfle.gameIsOverCorrectGuess);
         wolfle.processGuess("USQUE", 1);
@@ -252,22 +243,17 @@ public class WolfleTest {
     public void testEvaluateGuessAllLettersPresent() {
         Wolfle wolfle2 = new Wolfle("TASTE");        
         Letter[] guess = wolfle2.evaluateGuess("STATE");
-        // TODO: Test that returned letter array is correct
-        // 1. Create expected Letter array
-        // 2. Add an assertArrayEquals to test the evaluateGuessResult
         Letter[] expected = new Letter[5];
-        expected[0] = new Letter('S');   // 'S' is in the word but wrong position
+        expected[0] = new Letter('S');   
         expected[0].setStatus(Letter.Status.IN_WORD);
-        expected[1] = new Letter('T'); // 'T' is in the correct position
-        expected[1].setStatus(Letter.Status.IN_POSITION);
-        expected[2] = new Letter('A');   // 'A' is in the word but wrong position
+        expected[1] = new Letter('T');
+        expected[1].setStatus(Letter.Status.IN_WORD);
+        expected[2] = new Letter('A');   
         expected[2].setStatus(Letter.Status.IN_WORD);
-        expected[3] = new Letter('T'); // 'T' is in the correct position
+        expected[3] = new Letter('T'); 
         expected[3].setStatus(Letter.Status.IN_POSITION);
-        expected[4] = new Letter('E');   // 'E' is in the word but wrong position
-        expected[4].setStatus(Letter.Status.IN_WORD);
-
-        // 4. Use assertArrayEquals to compare the expected array and the result from evaluateGuess
+        expected[4] = new Letter('E');   
+        expected[4].setStatus(Letter.Status.IN_POSITION);
         assertArrayEquals(expected, guess);                    
     }  
 
@@ -357,24 +343,16 @@ public class WolfleTest {
     public void testProcessGuessThreeSameLetter() {
         wolfle.processGuess("EAGLE", 0);
         wolfle.processGuess("EERIE", 1);
-        // TODO: Test that letter status was updated correctly in alphabet and grid
-        // 1. Add asserts for getLetterStatus() for E, R, and I
-        // 2. Add asserts for getGridLetterStatus() for all columns of the second row.
+        
         assertEquals(Letter.Status.IN_POSITION, wolfle.alphabet.getStatus(4));
-        //assertEquals(Letter.Status.IN_WORD, wolfle.alphabet.getLetterStatus('A'));
-        //assertEquals(Letter.Status.NOT_IN_WORD, wolfle.alphabet.getLetterStatus('G'));
-        //assertEquals(Letter.Status.IN_POSITION, wolfle.alphabet.getLetterStatus('L'));
         assertEquals(Letter.Status.NOT_IN_WORD, wolfle.alphabet.getStatus(17));
-        assertEquals(Letter.Status.IN_WORD, wolfle.alphabet.getStatus(8));
+        assertEquals(Letter.Status.NOT_IN_WORD, wolfle.alphabet.getStatus(8));
 
-        // 2. Test letter statuses in the grid for the second row (row 1):
-        // The grid should be updated with the status of the letters for the second guess.
-
-        assertEquals(Letter.Status.IN_WORD, wolfle.grid.getGrid()[1][0].getStatus()); // E
-        assertEquals(Letter.Status.IN_POSITION, wolfle.grid.getGrid()[1][1].getStatus()); // E
-        assertEquals(Letter.Status.NOT_IN_WORD, wolfle.grid.getGrid()[1][2].getStatus()); // R
-        assertEquals(Letter.Status.IN_WORD, wolfle.grid.getGrid()[1][3].getStatus()); // I
-        assertEquals(Letter.Status.NOT_IN_WORD, wolfle.grid.getGrid()[1][4].getStatus()); // E
+        assertEquals(Letter.Status.IN_POSITION, wolfle.grid.getGrid()[1][0].getStatus());
+        assertEquals(Letter.Status.IN_WORD, wolfle.grid.getGrid()[1][1].getStatus());
+        assertEquals(Letter.Status.NOT_IN_WORD, wolfle.grid.getGrid()[1][2].getStatus());
+        assertEquals(Letter.Status.NOT_IN_WORD, wolfle.grid.getGrid()[1][3].getStatus());
+        assertEquals(Letter.Status.NOT_IN_WORD, wolfle.grid.getGrid()[1][4].getStatus());
     }    
     
 
